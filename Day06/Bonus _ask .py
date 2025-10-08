@@ -1,31 +1,21 @@
-print("Password Generator")
-length = int(input("Length: "))
-N = input("Include numbers? (y/n): ").strip().lower() == 'y'
-S = input("Include symbols? (y/n): ").strip().lower() == 'y'
+import random
+length=int(input("enter length of passsword"))
+N=input("Include number?(y/n):")
+S=input("Include symbol?(y/n):")
 
-letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-numbers = "0123456789"
-symbols = "!@#$%^&*()_+:?"
+letters="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+numbers="1234567890"
+symbols="!@#$%^&*()_+:?"
 
-seed = ord(letters[0]) 
 
-def generate_password(length, include_numbers=True, include_symbols=True):
-
-    pool = letters
-    if include_numbers:
-        pool += numbers
-    if include_symbols:
-        pool += symbols
-
-    password = ""
-    local_seed = seed
-
-    for i in range(length):
-        index = (local_seed * 7 + i * 3 + 5) % len(pool)
-        password += pool[index]
-        local_seed = index + 1  
-
-    return password
-
-p = generate_password(length, N, S)
-print("Generated password:", p)
+new_password=""
+for i in range(0,length):
+    new_password+=random.choice(letters)
+    if N=='y':
+     new_password+=random.choice(numbers)
+    if S=='y':
+      new_password+=random.choice(symbols)
+    if len(new_password)==length:
+      break
+    
+print(new_password)    
